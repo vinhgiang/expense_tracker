@@ -2,6 +2,8 @@ import 'package:expense_tracker/models/expense.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../dictionary/category.dart';
+
 class NewExpense extends StatefulWidget {
   const NewExpense({super.key, required this.onAddExpense});
 

@@ -1,5 +1,7 @@
 import 'package:expense_tracker/models/expense.dart';
 
+import '../dictionary/category.dart';
+
 class ExpenseBucket {
   final Category category;
   final List<Expense> expenses;
