@@ -2,7 +2,7 @@ import 'package:expense_tracker/dictionary/category.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class NewExpenseLandscape extends StatefulWidget {
+class NewExpenseLandscape extends StatelessWidget {
   final TextEditingController titleController;
   final TextEditingController amountController;
   final Category selectedCategory;
@@ -23,13 +23,6 @@ class NewExpenseLandscape extends StatefulWidget {
   });
 
   @override
-  State<NewExpenseLandscape> createState() {
-    return _NewExpenseLandscapeState();
-  }
-}
-
-class _NewExpenseLandscapeState extends State<NewExpenseLandscape> {
-  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -42,7 +35,7 @@ class _NewExpenseLandscapeState extends State<NewExpenseLandscape> {
                 decoration: const InputDecoration(
                   label: Text('Title'),
                 ),
-                controller: widget.titleController,
+                controller: titleController,
               ),
             ),
             const SizedBox(
@@ -55,7 +48,7 @@ class _NewExpenseLandscapeState extends State<NewExpenseLandscape> {
                   prefixText: '\$ ',
                   label: Text('Amount'),
                 ),
-                controller: widget.amountController,
+                controller: amountController,
               ),
             ),
           ],
@@ -63,7 +56,7 @@ class _NewExpenseLandscapeState extends State<NewExpenseLandscape> {
         Row(
           children: [
             DropdownButton(
-              value: widget.selectedCategory,
+              value: selectedCategory,
               items: Category.values
                   .map(
                     (category) => DropdownMenuItem(
@@ -74,14 +67,14 @@ class _NewExpenseLandscapeState extends State<NewExpenseLandscape> {
                     ),
                   )
                   .toList(),
-              onChanged: widget.updateCategory,
+              onChanged: updateCategory,
             ),
             const Spacer(),
-            Text(widget.selectedDate == null
+            Text(selectedDate == null
                 ? 'No date selected!'
-                : DateFormat.yMd().format(widget.selectedDate!)),
+                : DateFormat.yMd().format(selectedDate!)),
             IconButton(
-              onPressed: widget.displayDatePicker,
+              onPressed: displayDatePicker,
               icon: const Icon(Icons.calendar_month),
             ),
           ],
@@ -96,7 +89,7 @@ class _NewExpenseLandscapeState extends State<NewExpenseLandscape> {
               child: const Text('Cancel!'),
             ),
             ElevatedButton(
-              onPressed: widget.submitExpense,
+              onPressed: submitExpense,
               child: const Text('Save Expense'),
             ),
           ],

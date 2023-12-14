@@ -2,7 +2,7 @@ import 'package:expense_tracker/dictionary/category.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class NewExpensePortrait extends StatefulWidget {
+class NewExpensePortrait extends StatelessWidget {
   final TextEditingController titleController;
   final TextEditingController amountController;
   final Category selectedCategory;
@@ -23,13 +23,6 @@ class NewExpensePortrait extends StatefulWidget {
   });
 
   @override
-  State<NewExpensePortrait> createState() {
-    return _NewExpensePortraitState();
-  }
-}
-
-class _NewExpensePortraitState extends State<NewExpensePortrait> {
-  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -38,7 +31,7 @@ class _NewExpensePortraitState extends State<NewExpensePortrait> {
           decoration: const InputDecoration(
             label: Text('Title'),
           ),
-          controller: widget.titleController,
+          controller: titleController,
         ),
         Row(
           children: [
@@ -49,7 +42,7 @@ class _NewExpensePortraitState extends State<NewExpensePortrait> {
                   prefixText: '\$ ',
                   label: Text('Amount'),
                 ),
-                controller: widget.amountController,
+                controller: amountController,
               ),
             ),
             const SizedBox(
@@ -59,11 +52,11 @@ class _NewExpensePortraitState extends State<NewExpensePortrait> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(widget.selectedDate == null
+                  Text(selectedDate == null
                       ? 'No date selected!'
-                      : DateFormat.yMd().format(widget.selectedDate!)),
+                      : DateFormat.yMd().format(selectedDate!)),
                   IconButton(
-                    onPressed: widget.displayDatePicker,
+                    onPressed: displayDatePicker,
                     icon: const Icon(Icons.calendar_month),
                   ),
                 ],
@@ -77,7 +70,7 @@ class _NewExpensePortraitState extends State<NewExpensePortrait> {
         Row(
           children: [
             DropdownButton(
-              value: widget.selectedCategory,
+              value: selectedCategory,
               items: Category.values
                   .map(
                     (category) => DropdownMenuItem(
@@ -88,7 +81,7 @@ class _NewExpensePortraitState extends State<NewExpensePortrait> {
                     ),
                   )
                   .toList(),
-              onChanged: widget.updateCategory,
+              onChanged: updateCategory,
             )
           ],
         ),
@@ -105,7 +98,7 @@ class _NewExpensePortraitState extends State<NewExpensePortrait> {
             ),
             const Spacer(),
             ElevatedButton(
-              onPressed: widget.submitExpense,
+              onPressed: submitExpense,
               child: const Text('Save Expense'),
             ),
           ],
