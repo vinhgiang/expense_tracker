@@ -1,4 +1,5 @@
 import 'package:expense_tracker/models/expense.dart';
+import 'package:expense_tracker/utils/helpers.dart';
 import 'package:expense_tracker/widgets/new_expense/new_expense_landscape.dart';
 import 'package:expense_tracker/widgets/new_expense/new_expense_portrait.dart';
 import 'package:flutter/material.dart';
@@ -61,21 +62,22 @@ class _NewExpenseState extends State<NewExpense> {
     if (_titleController.text.trim().isEmpty ||
         isAmountInvalid ||
         _selectedDate == null) {
-      showDialog(
-        context: context,
-        builder: (ctx) => AlertDialog(
-          title: const Text('Invalid input!'),
-          content: const Text('Please make sure to enter valid values'),
-          actions: [
+      Helpers.showNativeDialog(
+        context,
+        const Text('Invalid input!'),
+        const Text('Please make sure to enter valid values'),
+        (ctx) {
+          return [
             TextButton(
               onPressed: () {
                 Navigator.pop(ctx);
               },
               child: const Text('Okay'),
-            )
-          ],
-        ),
+            ),
+          ];
+        },
       );
+
       return;
     }
 
