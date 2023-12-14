@@ -1,5 +1,6 @@
 import 'package:expense_tracker/widgets/expenses.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter/services.dart';
 
 // prefix lowercase k is a convention for global var
 var kColorScheme = ColorScheme.fromSeed(
@@ -11,7 +12,13 @@ var kDarkColorScheme = ColorScheme.fromSeed(
   seedColor: const Color.fromARGB(255, 5, 99, 125),
 );
 
-void main() {
+void main() async {
+  // // This will prevent landscape mode from displaying
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await SystemChrome.setPreferredOrientations([
+  //   DeviceOrientation.portraitUp,
+  // ]);
+
   runApp(
     MaterialApp(
       darkTheme: ThemeData.dark().copyWith(
